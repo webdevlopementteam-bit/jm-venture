@@ -1,0 +1,16 @@
+export default [
+  "/",
+  "/about",
+  "/services",
+  "/projects",
+  "/contact",
+  "/iconic-nest",
+  "/london-mart",
+  "/ace-edit",
+  "/galaxy",
+  "/gaur-city",
+  "/ace-estate",
+  "/privacy-policy",
+  "/terms-and-conditions",
+  "/thank-you",
+];

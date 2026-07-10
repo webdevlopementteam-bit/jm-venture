@@ -1,20 +1,26 @@
-import Role from './components/Role';
-import Login from './components/Login';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AdminDashboard from './components/AdminDashboard';
-import SalesDashboard from './components/SalesDashboard';
-import TeamDashboard from './components/TeamDashboard';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import { routes } from "./routes.jsx";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Role />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="adminDashboard" element={<AdminDashboard/>}/>
-        <Route path="salesDashboard" element={<SalesDashboard/>}/>
-        <Route path="teamDashboard" element={<TeamDashboard/>}/>
-      </Routes>
+      <Header />
+      <ScrollToTop />
+
+     <Routes>
+  {routes.map(({ path, component: Component }) => (
+    <Route
+      key={path}
+      path={path}
+      element={<Component />}
+    />
+  ))}
+</Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 };

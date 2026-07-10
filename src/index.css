@@ -2,54 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Ancizar Serif';
-  src: url('./fonts/AncizarSerif-Regular.ttf') format('ttf');
-  font-weight: 400;
-  font-style:normal;
+:root {
+  --background: 30 26% 96%;
+  --foreground: 210 3% 20%;
+  --border: 30 10% 85%;
+  --muted: 30 10% 90%;
+
+  --primary: 337 37% 36%;
+  --gold: 44 65% 47%;
+  --secondary: 210 3% 36%;
+  --accent: 30 10% 85%;
+  --destructive: 0 84% 60%;
 }
 
-body {
-  margin:0;
-  padding:0;
-  font-family: "Ancizar Serif", serif;
+body{
+  overflow-x: hidden;
 }
 
-.input-wrapper {
-  position: relative;
+/* ===== SCROLLBAR (Chrome, Edge, Safari) ===== */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.input-wrapper input {
-  position:relative;
-  padding: 10px 10px 10px 10px;
-  font-size: 16px;
-  width: 85%;
-  border:1px solid slategrey;
-  border-radius:5px;
+::-webkit-scrollbar-track {
+  
+  background: linear-gradient(
+    180deg,
+    #873953,
+    #C49A2A
+  );
 }
 
-.input-wrapper label {
-  position: absolute;
-  top: 10px;
-  left: 45px;
-  color: slategrey;
-  font-size: 17px;
-  pointer-events: none;
-  transition: 0.2s ease;
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+  border: 2px solid #0D0D0D; /* spacing effect */
 }
 
-/* Move label when input is focused OR not empty */
-.input-wrapper input:focus + label,
-.input-wrapper input:not(:placeholder-shown) + label {
-  top: -10px;
-  left: 20px;
-  font-size: 16px;
-  color: #28378f;
-  background: white;
-  padding: 0 5px;
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #5C2438 0%,
+    #873953 10%,
+    #5C2438 50%
+  );/* black background */
 }
 
-.input-wrapper input:focus{
-  outline: 1px solid #798aea;
-  box-shadow: 0px 0px 5px #798aea;
+.swiper-button-next,
+.swiper-button-prev {
+  color:black !important;
+  width: 25px;
+  height: 25px;
+  transition: 0.3s;
+  background-color: white;
+  padding:3px;
+  border-radius: 50%;
+}
+
+.swiper-button-next{
+  right:-10px;
+}
+
+.swiper-button-prev{
+  left:-10px
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+  will-change: transform;
 }
