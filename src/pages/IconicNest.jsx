@@ -21,6 +21,14 @@ import {
   Plus,
   X,
   Link2,
+  ChevronDown,
+  Home as HomeIcon,
+  Building2,
+  Landmark,
+  CheckCircle2,
+  Users,
+  Award,
+  Sparkles,
 } from "lucide-react";
 import iconicNestImg from "../assets/home/dholera.jpeg";
 import jmLogo from "../assets/jmlogo.png";
@@ -123,9 +131,264 @@ const SECTIONS = [
   { id: "enquire", label: "Enquire" },
 ];
 
+/* ---------------------------------------------------------------------- */
+/* Content sourced from the JM Venture Dholera brief                       */
+/* ---------------------------------------------------------------------- */
+
+const LIMITED_OFFERS = [
+  "Starting Price: Contact for Latest Price",
+  "Easy EMI Options Available",
+  "100% Clear Title & Documentation",
+  "DTCP/NA Approved Projects (where applicable)",
+  "Free Site Visit Assistance",
+  "Expert Investment Consultation",
+  "Limited Premium Corner & Main Road Plots",
+];
+
+const MAJOR_DEVELOPMENTS = [
+  "International Airport",
+  "Expressways & Metro Connectivity",
+  "Dedicated Freight Corridor",
+  "Industrial Manufacturing Hub",
+  "ABCD Building",
+  "Smart Roads & Underground Utilities",
+  "Solar Power Infrastructure",
+  "Business & Logistics Parks",
+  "Government-backed Infrastructure Development",
+];
+
+const PRICE_FACTORS = [
+  "Location",
+  "Road Connectivity",
+  "Residential or Commercial Zone",
+  "Plot Size",
+  "Project Approval Status",
+  "Future Development Potential",
+];
+
+const PLOT_TYPES = [
+  {
+    icon: HomeIcon,
+    roman: "i",
+    title: "Residential Plots",
+    lede: "Perfect for:",
+    items: [
+      "Future Home Construction",
+      "Holiday Homes",
+      "Long-Term Family Investment",
+      "Rental Property Development",
+    ],
+    note: "Available in multiple sizes suitable for different budgets.",
+  },
+  {
+    icon: Building2,
+    roman: "ii",
+    title: "Commercial Plots",
+    lede: "Ideal for:",
+    items: [
+      "Offices",
+      "Retail Shops",
+      "Warehouses",
+      "Hotels",
+      "Commercial Complexes",
+      "Business Centers",
+    ],
+    note: "Commercial land near upcoming infrastructure offers excellent ROI.",
+  },
+  {
+    icon: TrendingUp,
+    roman: "iii",
+    title: "Investment Plots",
+    lede: "Ideal for investors planning:",
+    items: [
+      "5-Year Investment",
+      "10-Year Investment",
+      "Wealth Creation",
+      "Portfolio Diversification",
+    ],
+    note: "Our Dholera investment plots are strategically selected in high-growth corridors where future infrastructure development is expected.",
+  },
+];
+
+const WHY_JM_VENTURE = [
+  {
+    title: "Verified Projects",
+    blurb:
+      "Every project undergoes document verification before recommendation.",
+  },
+  {
+    title: "Transparent Pricing",
+    blurb: "No hidden charges.",
+  },
+  {
+    title: "Complete Documentation Support",
+    blurb: "We assist from booking to registration.",
+  },
+  {
+    title: "Expert Investment Advice",
+    blurb:
+      "Our specialists analyze future growth corridors before recommending plots.",
+  },
+  {
+    title: "Site Visit Assistance",
+    blurb: "Visit the project physically before investing.",
+  },
+  {
+    title: "End-to-End Support",
+    blurb:
+      "From inquiry to registration, JM Venture stays with you throughout the buying process.",
+  },
+];
+
+const LAND_DEMAND_DRIVERS = [
+  "Industrial Expansion",
+  "Government Infrastructure Projects",
+  "Growing Employment Opportunities",
+  "Increasing Residential Demand",
+  "Commercial Development",
+];
+
+const LAND_TYPES = [
+  "Residential Land",
+  "Commercial Land",
+  "Township Plots",
+  "Investment Plots",
+  "Corner Plots",
+  "Main Road Facing Plots",
+  "Gated Community Plots",
+  "Premium Location Plots",
+];
+
+const BENEFITS = [
+  {
+    title: "High Appreciation Potential",
+    blurb:
+      "Infrastructure development generally increases surrounding land value.",
+  },
+  {
+    title: "Government-Backed Development",
+    blurb: "One of India's largest planned smart city projects.",
+  },
+  {
+    title: "Affordable Entry Price",
+    blurb:
+      "Compared to metro cities, Dholera still offers attractive investment opportunities.",
+  },
+  {
+    title: "Future Commercial Growth",
+    blurb: "Industries and businesses create long-term land demand.",
+  },
+  {
+    title: "Flexible Investment Options",
+    blurb: "Suitable for small, medium, and large investors.",
+  },
+];
+
+const CHOOSE_CHECKLIST = [
+  "Verify ownership documents",
+  "Check project approvals",
+  "Understand zoning regulations",
+  "Review future master plans",
+  "Evaluate road connectivity",
+  "Confirm nearby infrastructure",
+  "Assess appreciation potential",
+  "Work with trusted consultants like JM Venture",
+];
+
+const WHO_SHOULD_INVEST = [
+  "First-Time Investors",
+  "NRI Buyers",
+  "Working Professionals",
+  "Business Owners",
+  "Real Estate Investors",
+  "Retirement Planning",
+  "Long-Term Wealth Builders",
+];
+
+const FAQS = [
+  {
+    q: "What is the current Dholera plot price?",
+    a: "The Dholera plot price depends on the location, plot size, project approvals, and nearby infrastructure developments. At JM Venture, we offer premium Dholera plots at competitive prices. Contact us for the latest price list and available inventory.",
+  },
+  {
+    q: "What is the average Dholera Smart City plot price?",
+    a: "The Dholera Smart City plot price varies based on residential or commercial zoning, road connectivity, and project location. Our experts at JM Venture can help you compare different options and choose the best investment.",
+  },
+  {
+    q: "Are Dholera plots for sale legally verified?",
+    a: "Yes. JM Venture offers Dholera plots for sale with proper documentation and verified ownership. We guide buyers through the complete verification and registration process for a transparent purchase experience.",
+  },
+  {
+    q: "Is investing in Dholera plots a good decision?",
+    a: "Many investors consider Dholera investment plots attractive because of planned infrastructure, industrial development, and long-term growth potential. However, like any real estate investment, it's important to review project details, legal documents, and your own financial goals before investing.",
+  },
+  {
+    q: "What types of land in Dholera are available?",
+    a: "You can find various types of land in Dholera, including residential plots, commercial plots, investment plots, corner plots, and gated community developments. JM Venture helps you choose the right property based on your budget and investment objectives.",
+  },
+  {
+    q: "Can I buy residential plots in Dholera Smart City?",
+    a: "Yes. JM Venture offers residential Dholera plots for sale in multiple sizes suitable for building a home or making a long-term investment.",
+  },
+  {
+    q: "Are commercial plots available in Dholera?",
+    a: "Yes. We provide Dholera land for sale suitable for commercial projects such as offices, retail shops, warehouses, hotels, and industrial developments.",
+  },
+  {
+    q: "Why are Dholera plot prices increasing?",
+    a: "The demand for Dholera plots is influenced by ongoing infrastructure projects, industrial development, improved connectivity, and planned urban growth. Market conditions and government developments may impact future prices.",
+  },
+  {
+    q: "How do I choose the best Dholera investment plot?",
+    a: "When selecting Dholera investment plots, consider the project location, legal approvals, connectivity, future infrastructure plans, and the reputation of the developer or seller. JM Venture provides expert guidance to help you make an informed decision.",
+  },
+  {
+    q: "Does JM Venture provide site visits before booking?",
+    a: "Yes. We arrange free site visits so buyers can inspect the project location, surrounding infrastructure, and available plots before making an investment decision.",
+  },
+  {
+    q: "What documents should I check before buying land in Dholera?",
+    a: "Before purchasing land in Dholera, verify the title documents, ownership records, project approvals, zoning details, and registration documents. JM Venture assists buyers with complete documentation support.",
+  },
+  {
+    q: "Can NRIs buy Dholera plots?",
+    a: "Eligible NRIs can purchase property in India subject to applicable laws and RBI/FEMA regulations. Our team can guide you through the documentation and buying process.",
+  },
+  {
+    q: "What plot sizes are available in Dholera?",
+    a: "JM Venture offers Dholera plots for sale in various sizes to meet residential, commercial, and investment needs. Contact us for the latest availability and plot dimensions.",
+  },
+  {
+    q: "How can I get the latest Dholera plot price?",
+    a: "You can contact JM Venture to receive the latest Dholera plot price, updated inventory, payment plans, and current offers based on your preferred location and budget.",
+  },
+  {
+    q: "Why should I buy Dholera land from JM Venture?",
+    a: "JM Venture provides verified projects, transparent pricing, professional investment guidance, site visit assistance, and end-to-end support from inquiry to registration, making your property buying experience smooth and reliable.",
+  },
+];
+
+const SEARCH_TERMS = [
+  "Dholera plot price",
+  "Dholera plots for sale",
+  "Dholera land for sale",
+  "Land in Dholera",
+  "Dholera investment plots",
+  "Dholera smart city plot price",
+];
+
+const EXCLUSIVE_OFFER = [
+  "Free Investment Consultation",
+  "Free Site Visit Support",
+  "Latest Price List",
+  "Premium Plot Availability",
+  "Limited-Time Booking Assistance",
+];
+
 const IconicNest = () => {
   const [lightbox, setLightbox] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const [openFaq, setOpenFaq] = useState(0);
   const { scrollY } = useScroll();
   const heroScale = useTransform(scrollY, [0, 800], [1, 1.12]);
   const heroY = useTransform(scrollY, [0, 800], [0, 120]);
@@ -403,6 +666,17 @@ const IconicNest = () => {
               </motion.article>
             ))}
           </div>
+
+          <div className="flex items-center justify-center mt-10">
+            <Link
+              to="https://wa.me/919899053053"
+              target="_blank"
+              className="bg-[#873953] hover:bg-[#1A1414] flex text-white rounded-none px-9 py-7 text-[11px] tracking-[0.25em] uppercase h-auto group min-w-[240px]"
+            >
+              Get Latest Plot Price
+              <ArrowUpRight className="w-4 h-4 ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -516,6 +790,17 @@ const IconicNest = () => {
                 </div>
               </div>
               <ArrowUpRight className="w-4 h-4 ml-2 group-hover:rotate-45 transition-transform" />
+            </div>
+
+            <div className="mt-10 inline-block">
+              <Link
+                to="https://wa.me/919899053053"
+                target="_blank"
+                className="bg-[#873953] hover:bg-[#1A1414] flex text-white rounded-none px-9 py-7 text-[11px] tracking-[0.25em] uppercase h-auto group min-w-[240px]"
+              >
+                Book Free Site Visit
+                <ArrowUpRight className="w-4 h-4 ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
             </div>
           </div>
 
@@ -637,10 +922,587 @@ const IconicNest = () => {
         </div>
       </section>
 
+      {/* 6.1) DHOLERA PLOT PRICE — INTRO & LIMITED OFFER */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#F8F5F2] relative">
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-0 top-0 font-serif italic text-[26vw] lg:text-[18vw] leading-none text-[#1A1414]/[0.025] select-none"
+        >
+          07
+        </span>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 relative">
+          <div className="lg:col-span-5">
+            <SectionLabel label="Dholera Plot Price" />
+            <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] text-[#1A1414] mt-6">
+              Dholera Plot Price – Premium Dholera Plots for Sale |
+              <span className="italic text-[#873953]">
+                {" "}
+                Invest with JM Venture
+              </span>
+            </h2>
+          </div>
+          <div className="lg:col-span-7 lg:col-start-6 lg:pt-3">
+            <p className="text-lg leading-[1.75] text-[#1A1414]/75 font-light">
+              Looking for the <strong>best Dholera plot price</strong> with
+              maximum future appreciation? Welcome to{" "}
+              <strong>JM Venture</strong>, your trusted real estate partner for
+              premium <strong>Dholera plots for sale</strong>. Whether you're
+              planning to build your dream home, invest for long-term wealth, or
+              buy commercial land, we offer legally verified plots in the most
+              promising locations of Dholera Smart City.
+            </p>
+            <p className="text-base leading-[1.75] text-[#1A1414]/65 font-light mt-6">
+              With India's first Greenfield Smart City rapidly developing under
+              the Delhi-Mumbai Industrial Corridor (DMIC), investing in{" "}
+              <strong>land in Dholera</strong> today could become one of your
+              smartest financial decisions.
+            </p>
+
+            <div className="my-10 flex items-center gap-5">
+              <span className="block w-16 h-[1px] bg-[#873953]" />
+              <span className="text-[10px] tracking-[0.3em] uppercase text-[#873953] font-semibold">
+                Limited-Time Investment Offer
+              </span>
+            </div>
+
+            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+              {LIMITED_OFFERS.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-[#1A1414]/75 font-light text-sm lg:text-base"
+                >
+                  <CheckCircle2 className="w-4 h-4 mt-0.5 text-[#873953] shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-10 inline-block">
+              <a
+                href="tel:+919899053053"
+                className="bg-[#873953] hover:bg-[#1A1414] flex text-white rounded-none px-9 py-7 text-[11px] tracking-[0.25em] uppercase h-auto group min-w-[280px] items-center"
+              >
+                <Phone className="w-4 h-4 mr-3" />
+                Call JM Venture Today
+                <ArrowUpRight className="w-4 h-4 ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+            </div>
+            <p className="mt-4 text-[#1A1414]/50 font-light italic text-sm">
+              Book your site visit & get the latest Dholera plot price before
+              rates increase.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6.2) WHY INVEST IN DHOLERA SMART CITY */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#1A1414] text-[#F8F5F2] relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-32 top-1/3 w-[460px] h-[460px] rounded-full bg-[#873953]/10 blur-3xl"
+        />
+        <div className="max-w-7xl mx-auto relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-16">
+            <div className="lg:col-span-5">
+              <SectionLabel label="Why Invest" tone="dark" />
+              <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] mt-6">
+                Why invest in Dholera
+                <span className="italic text-[#873953]"> Smart City?</span>
+              </h2>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7 lg:pt-3">
+              <p className="text-[#F8F5F2]/70 font-light leading-relaxed text-lg">
+                Dholera Smart City is India's first planned Greenfield Smart
+                City under the Government of India's Smart Cities Mission.
+                Spread across thousands of hectares, it is being developed with
+                world-class infrastructure, industrial zones, residential
+                townships, commercial hubs, and advanced transport connectivity.
+              </p>
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <span className="text-[10px] tracking-[0.3em] uppercase text-[#873953] font-semibold">
+              Major developments include
+            </span>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#F8F5F2]/10 border border-[#F8F5F2]/10">
+            {MAJOR_DEVELOPMENTS.map((item, idx) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: idx * 0.04 }}
+                className="bg-[#1A1414] px-6 py-6 flex items-start gap-3 hover:bg-[#F8F5F2]/[0.04] transition-colors"
+              >
+                <Sparkles className="w-4 h-4 mt-0.5 text-[#873953] shrink-0" />
+                <span className="font-light text-[#F8F5F2]/85 text-sm lg:text-base">
+                  {item}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+          <p className="text-[#F8F5F2]/50 font-light leading-relaxed mt-4 italic">
+            These projects are expected to increase land demand significantly in
+            the coming years.
+          </p>
+        </div>
+      </section>
+
+      {/* 6.3) MARKET TRENDS */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#F8F5F2] relative">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <SectionLabel label="Market Trends" />
+            <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] text-[#1A1414] mt-6">
+              Dholera plot price —
+              <span className="italic text-[#873953]">
+                {" "}
+                current market trends.
+              </span>
+            </h2>
+            <p className="text-[#1A1414]/65 font-light leading-relaxed mt-8">
+              If you're searching for the latest{" "}
+              <strong>Dholera smart city plot price</strong>, it's important to
+              understand that prices vary depending on:
+            </p>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7 lg:pt-3">
+            <div className="border-t border-[#1A1414]/10">
+              {PRICE_FACTORS.map((f, idx) => (
+                <div
+                  key={f}
+                  className="flex items-center justify-between py-5 border-b border-[#1A1414]/10 group hover:pl-2 transition-all"
+                >
+                  <span className="font-serif italic text-lg text-[#1A1414]">
+                    {f}
+                  </span>
+                  <span className="font-serif italic text-[#873953] text-sm">
+                    0{idx + 1}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="text-[#1A1414]/65 font-light leading-relaxed mt-8">
+              Generally, <strong>Dholera plot prices</strong> have shown
+              consistent appreciation because of continuous government
+              infrastructure investments. <br /> At <strong>JM Venture</strong>,
+              we help buyers choose plots that offer both affordability and high
+              appreciation potential. <br /> OOur experts provide complete
+              market analysis before recommending any investment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6.4) PLOT TYPES */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#1A1414] text-[#F8F5F2] relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-32 bottom-0 w-[460px] h-[460px] rounded-full bg-[#873953]/10 blur-3xl"
+        />
+        <div className="max-w-7xl mx-auto relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-6">
+              <SectionLabel label="Choose Your Investment" tone="dark" />
+              <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] mt-6">
+                Dholera plots for sale —
+                <span className="italic text-[#873953]">
+                  {" "}
+                  choose the right investment.
+                </span>
+              </h2>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8 lg:pt-3 flex items-end">
+              <p className="text-[#F8F5F2]/70 font-light leading-relaxed">
+                JM Venture offers a wide selection of Dholera plots for sale, including:
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {PLOT_TYPES.map((p, idx) => (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="border border-[#F8F5F2]/15 p-8 hover:border-[#873953] transition-colors duration-500 group"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <span className="w-11 h-11 rounded-full border border-[#F8F5F2]/20 group-hover:border-[#873953] group-hover:bg-[#873953] flex items-center justify-center transition-all duration-500">
+                    <p.icon className="w-4 h-4" />
+                  </span>
+                  <span className="font-serif italic text-3xl text-[#873953]">
+                    {p.roman}
+                  </span>
+                </div>
+                <h3 className="font-serif text-2xl mb-4">{p.title}</h3>
+                <p className="text-[10px] tracking-[0.25em] uppercase text-[#F8F5F2]/50 font-semibold mb-3">
+                  {p.lede}
+                </p>
+                <ul className="space-y-2 mb-6">
+                  {p.items.map((it) => (
+                    <li
+                      key={it}
+                      className="text-sm font-light text-[#F8F5F2]/80 flex items-start gap-2"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-[#873953] mt-2 shrink-0" />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs italic font-light text-[#F8F5F2]/50 leading-relaxed pt-4 border-t border-[#F8F5F2]/10">
+                  {p.note}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6.5) WHY JM VENTURE */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#F8F5F2] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-5">
+              <SectionLabel label="Why JM Venture" />
+              <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] text-[#1A1414] mt-6">
+                Choosing the right
+                <span className="italic text-[#873953]"> consultant.</span>
+              </h2>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7 lg:pt-3">
+              <p className="text-[#1A1414]/65 font-light leading-relaxed text-lg">
+                Choosing the right real estate consultant is as important as
+                choosing the right plot. Here's why investors trust JM Venture.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#1A1414]/10">
+            {WHY_JM_VENTURE.map((item, idx) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className="border-r border-b border-[#1A1414]/10 p-8 hover:bg-[#1A1414] hover:text-[#F8F5F2] transition-colors duration-500 group"
+              >
+                <ShieldCheck className="w-5 h-5 text-[#873953] mb-4 group-hover:text-[#F8F5F2] transition-colors" />
+                <h3 className="font-serif text-xl mb-2">✔ {item.title}</h3>
+                <p className="text-sm font-light text-[#1A1414]/65 group-hover:text-[#F8F5F2]/75 transition-colors">
+                  {item.blurb}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6.6) LAND IN DHOLERA + TYPES AVAILABLE */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#1A1414] text-[#F8F5F2] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <SectionLabel label="Land in Dholera" tone="dark" />
+            <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] mt-6">
+              A smart choice for
+              <span className="italic text-[#873953]"> future growth.</span>
+            </h2>
+            <p className="text-[#F8F5F2]/65 font-light leading-relaxed mt-8">
+              The demand for land in Dholera is increasing due to:
+            </p>
+            <ul className="mt-8 space-y-3">
+              {LAND_DEMAND_DRIVERS.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 text-[#F8F5F2]/80 font-light"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#873953] shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-[#F8F5F2]/65 font-light leading-relaxed mt-8">
+              Unlike many speculative markets, Dholera's growth is backed by planned infrastructure and government-led development.
+            </p>
+            <p className="text-[#F8F5F2]/65 font-light leading-relaxed mt-8">
+              This makes it attractive for both first-time investors and experienced real estate buyers.
+            </p>
+          </div>
+
+          <div className="lg:col-span-6 lg:col-start-7">
+            <span className="text-[10px] tracking-[0.3em] uppercase text-[#873953] font-semibold">
+              Dholera land for sale — types available
+            </span>
+            <p className="text-[#F8F5F2]/50 font-light italic mt-3 mb-8">
+              JM Venture provides multiple land options including:
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {LAND_TYPES.map((item, idx) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: idx * 0.04 }}
+                  className="flex items-center gap-3 border border-[#F8F5F2]/15 px-5 py-4 hover:border-[#873953] transition-colors"
+                >
+                  <Landmark className="w-4 h-4 text-[#873953] shrink-0" />
+                  <span className="font-light text-sm lg:text-base">
+                    {item}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-[#F8F5F2]/50 font-light italic mt-3 mb-8">
+              Our consultants help you select the most suitable option according to your investment goals.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6.7) BENEFITS */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#F8F5F2] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-5">
+              <SectionLabel label="Benefits" />
+              <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] text-[#1A1414] mt-6">
+                Benefits of buying Dholera
+                <span className="italic text-[#873953]">
+                  {" "}
+                  investment plots.
+                </span>
+              </h2>
+            </div>
+          </div>
+
+          <div className="border-t border-[#1A1414]/10">
+            {BENEFITS.map((b, idx) => (
+              <motion.div
+                key={b.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className="grid grid-cols-12 gap-4 lg:gap-8 items-center py-7 border-b border-[#1A1414]/10 hover:bg-[#1A1414] hover:text-[#F8F5F2] transition-colors duration-500 px-2 lg:px-6 -mx-2 lg:-mx-6 group"
+              >
+                <div className="col-span-1">
+                  <span className="font-serif italic text-2xl text-[#873953] group-hover:text-[#F8F5F2] transition-colors">
+                    0{idx + 1}
+                  </span>
+                </div>
+                <div className="col-span-11 lg:col-span-4">
+                  <h3 className="font-serif text-xl lg:text-2xl leading-tight">
+                    {b.title}
+                  </h3>
+                </div>
+                <div className="col-span-12 lg:col-span-7 lg:col-start-6">
+                  <p className="text-sm lg:text-base font-light leading-relaxed text-[#1A1414]/70 group-hover:text-[#F8F5F2]/75 transition-colors duration-500">
+                    {b.blurb}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6.8) HOW TO CHOOSE + WHO SHOULD INVEST */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#1A1414] text-[#F8F5F2] relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-32 top-0 w-[460px] h-[460px] rounded-full bg-[#873953]/10 blur-3xl"
+        />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative">
+          <div className="lg:col-span-6">
+            <SectionLabel label="How to Choose" tone="dark" />
+            <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] mt-6 mb-8">
+              How to choose the
+              <span className="italic text-[#873953]">
+                {" "}
+                right Dholera plot?
+              </span>
+            </h2>
+            <p className="text-[#F8F5F2]/60 font-light leading-relaxed mb-8">
+             Before buying any property, consider:
+            </p>
+            <ul className="space-y-3">
+              {CHOOSE_CHECKLIST.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 mt-0.5 text-[#873953] shrink-0" />
+                  <span className="font-light text-[#F8F5F2]/85">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[#F8F5F2]/60 font-light leading-relaxed mb-8">
+             Avoid purchasing based only on low prices—always evaluate the project's legal status and development prospects.
+            </p>
+          </div>
+
+          <div className="lg:col-span-5 lg:col-start-8">
+            <SectionLabel label="Who Should Invest" tone="dark" />
+            <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] mt-6 mb-8">
+              Who should
+              <span className="italic text-[#873953]"> invest in Dholera?</span>
+            </h2>
+            <p className="text-[#F8F5F2]/60 font-light leading-relaxed mb-8">
+              Our plots are ideal for:
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {WHO_SHOULD_INVEST.map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-2 border border-[#F8F5F2]/20 px-4 py-2.5 text-sm font-light hover:border-[#873953] transition-colors"
+                >
+                  <Users className="w-3.5 h-3.5 text-[#873953]" />
+                  {item}
+                </span>
+              ))}
+            </div>
+            <p className="text-[#F8F5F2]/60 font-light leading-relaxed mb-8">
+              Whether your budget is modest or substantial, JM Venture can help you identify a suitable opportunity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6.9) FAQ */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#F8F5F2] relative">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <SectionLabel label="FAQs" center />
+            <h2 className="font-serif text-4xl lg:text-6xl leading-[1.05] mt-6">
+              Frequently asked
+              <span className="italic text-[#873953]"> questions.</span>
+            </h2>
+          </div>
+
+          <div className="border-t border-[#1A1414]/10">
+            {FAQS.map((item, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div key={item.q} className="border-b border-[#1A1414]/10">
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full flex items-center justify-between gap-6 py-6 text-left group"
+                  >
+                    <span className="flex items-baseline gap-4">
+                      <span className="font-serif italic text-[#873953] text-sm">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-serif text-lg lg:text-xl text-[#1A1414] group-hover:text-[#873953] transition-colors">
+                        {item.q}
+                      </span>
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-[#873953] shrink-0 transition-transform duration-500 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-6 pl-0 lg:pl-9 text-[#1A1414]/65 font-light leading-relaxed max-w-2xl">
+                          {item.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 6.10) WHY BUY THROUGH JM VENTURE + BOOK TODAY */}
+      <section className="px-6 lg:px-10 py-28 lg:py-36 bg-[#1A1414] text-[#F8F5F2] relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#873953]/10 blur-3xl"
+        />
+        <div className="max-w-6xl mx-auto relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
+            <div className="lg:col-span-5">
+              <SectionLabel label="Why Buy Through Us" tone="dark" />
+              <h2 className="font-serif text-4xl lg:text-5xl leading-[1.05] mt-6">
+                Why buy through
+                <span className="italic text-[#873953]"> JM Venture?</span>
+              </h2>
+            </div>
+            <div className="lg:col-span-7">
+              <p className="text-[#F8F5F2]/65 font-light leading-relaxed text-lg mb-8">
+                Buying real estate is a major decision. At <strong>JM Venture</strong>, we focus
+                on helping clients make informed choices by providing
+                transparent information, verified projects, and professional
+                support from inquiry to registration. Whether you're searching
+                for:
+              </p>
+              <div className="flex flex-wrap gap-3 mb-8">
+                {SEARCH_TERMS.map((term) => (
+                  <span
+                    key={term}
+                    className="text-[10px] tracking-[0.2em] uppercase border border-[#873953]/40 text-[#873953] px-4 py-2"
+                  >
+                    {term}
+                  </span>
+                ))}
+              </div>
+              <p className="text-[#F8F5F2]/50 font-light italic leading-relaxed">
+                Our experienced team is here to help you explore options that
+                align with your investment goals.
+              </p>
+            </div>
+          </div>
+
+          <div className="border-t border-[#F8F5F2]/10 pt-16 text-center">
+            <Award className="w-8 h-8 text-[#873953] mx-auto mb-6" />
+            <h3 className="font-serif text-3xl lg:text-4xl mb-4">
+              Book Your Dholera Plot
+              <span className="italic text-[#873953]"> Today.</span>
+            </h3>
+            <p className="text-[#F8F5F2]/60 font-light max-w-xl mx-auto mb-10">
+              Don't miss the opportunity to invest in one of India's most
+              talked-about smart city developments.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
+              {EXCLUSIVE_OFFER.map((item) => (
+                <span
+                  key={item}
+                  className="flex items-center gap-2 text-sm font-light border border-[#F8F5F2]/15 px-5 py-3"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-[#873953]" />
+                  {item}
+                </span>
+              ))}
+            </div>
+            <p className="font-serif italic text-[#F8F5F2]/70 max-w-2xl mx-auto">
+              Get the latest Dholera plot price, schedule your site visit, and
+              explore verified Dholera plots for sale before the next price
+              revision. JM Venture — your trusted partner for smart real estate
+              investments in Dholera.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 7) CTA */}
       <section
         id="enquire"
-        className="relative bg-[#F8F5F2] text-[#1A1414] px-6 lg:px-10 py-28 lg:py-40 overflow-hidden"
+        className="relative bg-[#F8F5F2] text-[#1A1414] px-6 lg:px-10 py-20 lg:py-28 overflow-hidden"
       >
         <div
           aria-hidden

@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
 
+# Block system/internal folders
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /private/
+
+# Sitemap
 Sitemap: https://www.jm-ventures.in/sitemap.xml
+
+# Host
+Host: https://www.jm-ventures.in
