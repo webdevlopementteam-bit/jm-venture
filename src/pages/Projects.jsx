@@ -20,7 +20,7 @@ const PROJECTS = [
     description:
       "Premium plotted development in India's first greenfield smart city, anchored to the new Dholera International Airport.",
     image: dholera,
-    link:"/iconic-nest",
+    link:"/dholera-plots",
   },
   {
     id: "london-mart",

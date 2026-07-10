@@ -4,7 +4,7 @@ export default [
   "/services",
   "/projects",
   "/contact",
-  "/iconic-nest",
+  "/dholera-plots",
   "/london-mart",
   "/ace-edit",
   "/galaxy",

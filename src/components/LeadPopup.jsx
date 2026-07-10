@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
 
 export default function LeadPopup() {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem("lead_popup_shown")) return;
@@ -22,35 +24,44 @@ export default function LeadPopup() {
     city: "",
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      await emailjs.send(
-        "service_b35yyps",
-        "template_bp3ht4t",
-        {
-          form_type: "Popup Lead Form",
-          from_name: form.name,
-          phone: form.mobile,
-          city: form.city,
-        },
-        "CqaPnjLV5Q0q6hcqK",
-      );
+    if (loading) return;
 
-      alert("Thank you! We'll contact you shortly.");
+    setLoading(true);
 
-      setOpen(false);
+    const payload = {
+      form_type: "Popup Lead Form",
+      from_name: form.name,
+      phone: form.mobile,
+      city: form.city,
+    };
 
-      setForm({
-        name: "",
-        mobile: "",
-        city: "",
+    // UI ko instant update karo
+    setOpen(false);
+
+    toast.success("Thank you! We'll contact you shortly.");
+
+    setForm({
+      name: "",
+      mobile: "",
+      city: "",
+    });
+
+    // Email background me send hogi
+    emailjs
+      .send("service_b35yyps", "template_bp3ht4t", payload, "CqaPnjLV5Q0q6hcqK")
+      .then(() => {
+        console.log("Lead sent successfully");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Lead couldn't be sent. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    } catch (err) {
-      console.log(err);
-      alert("Something went wrong.");
-    }
   };
 
   return (
@@ -101,9 +112,10 @@ export default function LeadPopup() {
 
               <button
                 type="submit"
-                className="w-full bg-primary text-white py-3 rounded-lg"
+                disabled={loading}
+                className="w-full bg-primary text-white py-3 rounded-lg disabled:opacity-60"
               >
-                Submit
+                {loading ? "Submitting..." : "Submit"}
               </button>
             </form>
           </div>

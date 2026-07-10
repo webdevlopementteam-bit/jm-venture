@@ -176,7 +176,7 @@ const PROJECTS = [
     details: "71 plots • 155-300 sq yards • ~11,661 sqm",
     image: dholera,
     status: "Selling Fast",
-    link:"/iconic-nest",
+    link:"/dholera-plots",
   },
   {
     name: "London Mart",

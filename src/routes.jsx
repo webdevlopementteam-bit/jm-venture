@@ -21,7 +21,7 @@ export const routes = [
   { path: "/services", component: Services },
   { path: "/projects", component: Projects },
   { path: "/contact", component: Contact },
-  { path: "/iconic-nest", component: IconicNest },
+  { path: "/dholera-plots", component: IconicNest },
   { path: "/london-mart", component: LondonMart },
   { path: "/ace-edit", component: AceEdit },
   { path: "/galaxy", component: Galaxy },

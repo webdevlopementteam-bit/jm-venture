@@ -32,7 +32,7 @@ const Header = () => {
   const location = useLocation();
 
   const projectLogos = {
-    "/iconic-nest": iconiclogo,
+    "/dholera-plots": iconiclogo,
     "/ace-estate": aceestatelogo,
     "/ace-edit": acelogo,
     "/london-mart": lmlogo,
@@ -133,7 +133,7 @@ transition-all duration-300 ease-out w-56"
               >
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 py-3">
                   {/* Item */}
-                  <Link to="/iconic-nest">
+                  <Link to="/dholera-plots">
                     <div className="px-5 py-3 hover:bg-[#1A1414] group/item transition rounded-lg">
                       <p className="text-sm font-semibold text-gray-900 group-hover/item:text-white">
                         Iconic Nest
@@ -308,7 +308,7 @@ transition-all duration-300 ease-out w-56"
                 {mobileDropdownOpen && (
                   <div className="flex flex-col p-3 gap-2 bg-white">
                     <Link
-                      to="/iconic-nest"
+                      to="/dholera-plots"
                       onClick={() => {
                         setMobileMenuOpen(false);
                         setMobileDropdownOpen(false);
