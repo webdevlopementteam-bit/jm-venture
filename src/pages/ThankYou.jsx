@@ -1,10 +1,21 @@
+import { useEffect } from "react";
+
 const ThankYou = () => {
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17552957890/6FFiCIGQws8cEMLD87FB",
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
       <div className="bg-white shadow-xl rounded-lg p-10 text-center max-w-lg">
         <h1 className="text-4xl font-bold text-green-600 mb-4">
           Thank You!
         </h1>
+
         <p className="text-gray-600 mb-6">
           Your inquiry has been submitted successfully.
           Our team will contact you shortly.

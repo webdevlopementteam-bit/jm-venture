@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function LeadPopup() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -38,16 +40,18 @@ export default function LeadPopup() {
       city: form.city,
     };
 
-    // UI ko instant update karo
+    // Popup close
     setOpen(false);
 
-    toast.success("Thank you! We'll contact you shortly.");
-
+    // Form reset
     setForm({
       name: "",
       mobile: "",
       city: "",
     });
+
+    // Thank You page par redirect
+    navigate("/thank-you");
 
     // Email background me send hogi
     emailjs
@@ -57,7 +61,6 @@ export default function LeadPopup() {
       })
       .catch((err) => {
         console.error(err);
-        toast.error("Lead couldn't be sent. Please try again.");
       })
       .finally(() => {
         setLoading(false);
