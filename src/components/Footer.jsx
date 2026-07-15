@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "../router";
 import logo from "../assets/jmlogo.png";
 import { FaFacebook, FaYoutube } from "react-icons/fa";
 import { BsInstagram, BsTwitter } from "react-icons/bs";

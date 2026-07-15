@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "../router";
 import logo from "../assets/jmlogo.png";
 import { MapPin, Menu, X } from "lucide-react";
 import { FaAngleDown } from "react-icons/fa";

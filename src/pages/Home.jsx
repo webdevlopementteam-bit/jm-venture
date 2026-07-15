@@ -1,6 +1,6 @@
 import hero from "../assets/home/hero.mp4";
 import { motion, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "../router";
 import {
   ArrowUpRight,
   Award,

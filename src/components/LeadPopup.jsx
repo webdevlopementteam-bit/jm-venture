@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "../router";
 
 export default function LeadPopup() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function LeadPopup() {
     const timer = setTimeout(() => {
       setOpen(true);
       sessionStorage.setItem("lead_popup_shown", "true");
-    }, 30000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, []);

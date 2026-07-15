@@ -13,7 +13,7 @@
       async
       src="https://www.googletagmanager.com/gtag/js?id=AW-17552957890"
     ></script>
-    <script>
+    <script nonce="__CSP_NONCE__">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -29,7 +29,7 @@
     <title>JM Ventures</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="root"><!--ssr-outlet--></div>
+    <script type="module" src="/src/entry-client.jsx"></script>
   </body>
 </html>

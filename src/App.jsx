@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "./router";
+import { Toaster } from "react-hot-toast";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -8,7 +9,7 @@ import LeadPopup from "./components/LeadPopup.jsx";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <>
       <LeadPopup />
       <Header />
       <ScrollToTop />
@@ -20,7 +21,13 @@ const App = () => {
       </Routes>
       <CallToAction />
       <Footer />
-    </BrowserRouter>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "../router";
 import banner from "../assets/about/banner.png";
 import iconic from "../assets/iconicnest/nest6.png";
 import blueprintBg from "../assets/about/blueprint-bg.png";

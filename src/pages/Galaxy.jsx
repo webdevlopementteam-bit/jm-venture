@@ -5,7 +5,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { Link } from "react-router-dom"; // or next/link
+import { Link } from "../router"; // or next/link
 
 import {
   MapPinned,

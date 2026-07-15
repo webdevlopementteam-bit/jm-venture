@@ -24,7 +24,7 @@ import sector3 from "../assets/service/sector3.jpg";
 import sector4 from "../assets/service/sector4.jpg";
 import sector5 from "../assets/service/sector5.jpg";
 import sector6 from "../assets/service/sector6.jpg";
-import { Link } from "react-router-dom";
+import { Link } from "../router";
 
 const stats = [
   { value: "₹2,400Cr", label: "Assets Advised" },

@@ -7,7 +7,7 @@ import aceImg from "../assets/home/ace-estate.jpg";
 import { AnimatePresence, motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight, ArrowUpRight, MapPin, Plus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "../router";
 
 const FILTERS = ["All", "Residential", "Commercial", "Plots"];
 const PROJECTS = [
