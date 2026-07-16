@@ -66,41 +66,49 @@ const Contact = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const templateParams = {
-        form_type: "Contact Form",
-        from_name: form.name,
-        from_email: form.email,
-        phone: form.phone,
-        interest: form.company,
-        message: form.message,
-      };
+    if (submitted) return;
 
-      await emailjs.send(
+    setSubmitted(true);
+
+    const templateParams = {
+      form_type: "Contact Form",
+      from_name: form.name,
+      from_email: form.email,
+      phone: form.phone,
+      interest: form.company,
+      message: form.message,
+    };
+
+    // Form reset
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      message: "",
+      consent: false,
+    });
+
+    // Instant redirect
+    navigate("/thank-you");
+
+    // Email background me send hogi
+    emailjs
+      .send(
         "service_et2ozej",
         "template_xqwjqe7",
         templateParams,
         "CqaPnjLV5Q0q6hcqK",
-      );
-
-      
-
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        message: "",
-        consent: false,
+      )
+      .then(() => {
+        console.log("Lead sent successfully");
+      })
+      .catch((err) => {
+        console.error("EmailJS Error:", err);
       });
-      navigate("/thank-you");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to send inquiry");
-    }
   };
 
   const update = (key, value) => setForm({ ...form, [key]: value });
@@ -313,16 +321,21 @@ const Contact = () => {
                       className="mt-1 accent-primary"
                     />
                     <span className="text-sm text-muted-foreground">
-                      I agree to receive updates,offers and communication via RCS/SMS/WHATSAPP CALL from JM Ventures LLP. and accept the privacy policy.
+                      I agree to receive updates,offers and communication via
+                      RCS/SMS/WHATSAPP CALL from JM Ventures LLP. and accept the
+                      privacy policy.
                     </span>
                   </label>
 
                   <button
                     type="submit"
-                    className="inline-flex items-center bg-primary text-white px-8 py-4 text-sm font-medium tracking-wide hover:bg-deep-burgundy transition-colors group"
+                    disabled={submitted}
+                    className="inline-flex items-center bg-primary text-white px-8 py-4 text-sm font-medium tracking-wide hover:bg-deep-burgundy transition-colors group disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Send Inquiry
-                    <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+                    {submitted ? "Submitting..." : "Send Inquiry"}
+                    {!submitted && (
+                      <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+                    )}
                   </button>
                 </form>
               )}

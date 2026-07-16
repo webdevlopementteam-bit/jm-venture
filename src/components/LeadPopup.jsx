@@ -24,6 +24,7 @@ export default function LeadPopup() {
     name: "",
     mobile: "",
     city: "",
+    message: "",
   });
 
   const handleSubmit = (e) => {
@@ -38,6 +39,7 @@ export default function LeadPopup() {
       from_name: form.name,
       phone: form.mobile,
       city: form.city,
+      message: form.message,
     };
 
     // Popup close
@@ -48,6 +50,7 @@ export default function LeadPopup() {
       name: "",
       mobile: "",
       city: "",
+      message: "",
     });
 
     // Thank You page par redirect
@@ -111,6 +114,15 @@ export default function LeadPopup() {
                 onChange={(e) => setForm({ ...form, city: e.target.value })}
                 required
                 className="w-full border rounded-lg p-3"
+              />
+
+              <textarea
+                placeholder="Message"
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                rows={4}
+                required
+                className="w-full border rounded-lg p-3 resize-none"
               />
 
               <button
