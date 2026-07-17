@@ -2,7 +2,13 @@ import { useEffect } from "react";
 
 const ThankYou = () => {
   useEffect(() => {
-    if (window.gtag) {
+    // Handles the real lead flow: Contact/LeadPopup redirect here via
+    // client-side navigation (no full page load), so server.js's injected
+    // <script> for this route (which only runs on a direct/hard page load)
+    // never executes — this effect is what actually fires the conversion.
+    // The __conversionsFired guard skips it on a direct load of /thank-you,
+    // where that injected script already fired it.
+    if (window.gtag && !window.__conversionsFired?.["/thank-you"]) {
       window.gtag("event", "conversion", {
         send_to: "AW-17552957890/6FFiCIGQws8cEMLD87FB",
       });

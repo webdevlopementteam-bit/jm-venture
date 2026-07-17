@@ -53,6 +53,23 @@ const renderLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+// Page-load Google Ads conversion snippets, keyed by route. Injected as real
+// server-rendered <script> tags (not fired from a React useEffect) so they:
+//   1. show up in "View Page Source" like Google's own paste-in-<head>
+//      instructions expect, and
+//   2. fire the instant the browser parses the page, instead of depending on
+//      the full JS bundle downloading, parsing and hydrating first — a
+//      visitor who leaves before hydration finishes would otherwise never
+//      get tracked at all.
+// window.__conversionsFired lets ThankYou.jsx's mount effect (which is what
+// actually fires for the real lead flow — form submit does a client-side
+// route change, not a full page load, so this injected script never runs
+// for that path) know not to fire the same conversion twice on a direct
+// page load, where both this script and the effect would otherwise run.
+const PAGE_LOAD_CONVERSIONS = {
+  "/thank-you": `<script>window.__conversionsFired=window.__conversionsFired||{};window.__conversionsFired["/thank-you"]=true;gtag('event', 'conversion', {'send_to': 'AW-17552957890/6FFiCIGQws8cEMLD87FB'});</script>`,
+};
+
 let vite;
 if (!isProduction) {
   const { createServer } = await import("vite");
@@ -101,7 +118,12 @@ app.use("*all", renderLimiter, async (req, res) => {
 
     const { html: appHtml } = render(url);
 
-    const html = template.replace(`<!--ssr-outlet-->`, appHtml);
+    let html = template.replace(`<!--ssr-outlet-->`, appHtml);
+
+    const conversionSnippet = PAGE_LOAD_CONVERSIONS[url.split("?")[0]];
+    if (conversionSnippet) {
+      html = html.replace("</head>", `${conversionSnippet}</head>`);
+    }
 
     res.status(200).set({ "Content-Type": "text/html" }).send(html);
   } catch (e) {

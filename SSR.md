@@ -96,7 +96,43 @@ browser but crash `npm run dev`'s SSR path.
 4. Run `npm run dev` and load the URL directly (not via client-side
    navigation) to confirm it server-renders — `curl -s http://localhost:5173/your-path | grep '<title>'` is a quick sanity check.
 
-## 7. Deployment notes
+## 7. Page-load conversion tags (Google Ads etc.)
+
+`/thank-you` needs its Google Ads conversion snippet to fire reliably and be
+visible in "View Page Source" — the way Google's own setup instructions
+assume ("paste between `<head></head>`"). It can't just live in a React
+`useEffect`, for two reasons:
+
+1. **The real lead flow never reloads the page.** `Contact.jsx` and
+   `LeadPopup.jsx` both redirect via `navigate("/thank-you")` — a
+   client-side React Router transition, not a new document request. So a
+   server-injected `<script>` for that route would never run for actual
+   leads; only a mounted-component effect fires in that case.
+2. **A direct/hard load of `/thank-you`** (someone opens the URL fresh, a
+   verification tool loads it, a page refresh) *does* request a new
+   document from the server — and there, a `useEffect`-only conversion
+   depends on the full JS bundle downloading, parsing, and hydrating before
+   it fires. A visitor who leaves before that finishes is never tracked,
+   and the tag never appears in view-source either.
+
+So both paths are covered, without double-firing:
+- `server.js` has a `PAGE_LOAD_CONVERSIONS` map (route → literal `<script>`
+  string) that gets spliced into `</head>` for matching routes — this is
+  real server-rendered HTML, fires the instant the browser parses it, and
+  is what shows up in view-source. It also sets
+  `window.__conversionsFired["/thank-you"] = true`.
+- `ThankYou.jsx`'s `useEffect` still fires the conversion (this is what
+  actually tracks the real lead flow), but skips itself if
+  `window.__conversionsFired["/thank-you"]` is already set — which is only
+  the case on a direct/hard load, where the injected script already fired
+  it.
+
+**To add a conversion tag for a new page-load event**, add an entry to
+`PAGE_LOAD_CONVERSIONS` in `server.js` (setting the matching
+`__conversionsFired` key), and guard any equivalent `useEffect` in that
+page's component the same way.
+
+## 8. Deployment notes
 
 - This needs a **Node process running**, not a static file host — `npm start`
   runs an Express server that must stay alive (e.g. via `pm2`, a systemd
@@ -109,7 +145,7 @@ browser but crash `npm run dev`'s SSR path.
 - Set `NODE_ENV=production` and `PORT` in your hosting environment, then run
   `npm start`.
 
-## 8. Security hardening
+## 9. Security hardening
 
 `server.js` runs several layers of defense in front of every request:
 
@@ -144,7 +180,7 @@ front of Node (nginx, Cloudflare, your host's load balancer) than reimplemented
 in the app — the measures above protect the application layer, not the
 transport layer.
 
-## 9. Troubleshooting
+## 10. Troubleshooting
 
 | Symptom | Cause | Fix |
 |---|---|---|
@@ -153,5 +189,5 @@ transport layer.
 | `dist/server/entry-server.js` not found when running `npm start` | Forgot to run `npm run build` first | Run `npm run build`, then `npm start` |
 | Port already in use on restart | A previous `node server.js` (or its Vite HMR websocket on port `24678`) is still running | `lsof -ti:5173,24678 \| xargs kill -9` |
 | Console spam: `No routes matched location "/some-file.jpg"` | A component references an asset by absolute path (e.g. `poster="/hero-bg.jpg"`) that doesn't exist in `public/`, so the request 404s and used to fall through to SSR, which tried to render it as a page. `server.js`'s catch-all now answers 404 immediately for any unmatched request whose path has a file extension, so this no longer happens — but it means the asset is still genuinely missing. | Add the missing file to `public/`, or fix the reference to point at a real asset. |
-| `429 Too Many Requests` during normal use/testing | You (or a load test / bot) exceeded the rate limits in §8 | Wait for the 1-minute window to reset, or raise `limit` in `server.js` if the defaults are too tight for your traffic pattern |
+| `429 Too Many Requests` during normal use/testing | You (or a load test / bot) exceeded the rate limits in §9 | Wait for the 1-minute window to reset, or raise `limit` in `server.js` if the defaults are too tight for your traffic pattern |
 | Real client IPs show up as the load balancer's IP in logs, or rate limiting seems to apply globally instead of per-visitor | Running behind a reverse proxy that isn't the immediate first hop `trust proxy: 1` expects | Adjust the `trust proxy` value in `server.js` to match your proxy chain (see the [Express `trust proxy` docs](https://expressjs.com/en/guide/behind-proxies.html)) |
