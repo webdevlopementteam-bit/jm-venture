@@ -54,6 +54,10 @@ app.use(
               "https://www.google-analytics.com",
               "https://analytics.google.com",
               "https://api.emailjs.com",
+              // Google Ads (gtag AW-... conversion tracking) beacons
+              "https://www.google.com",
+              "https://ad.doubleclick.net",
+              "https://googleads.g.doubleclick.net",
             ],
             objectSrc: ["'none'"],
             baseUri: ["'self'"],
