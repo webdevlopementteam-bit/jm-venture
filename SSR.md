@@ -116,25 +116,27 @@ browser but crash `npm run dev`'s SSR path.
 | Measure | What it does |
 |---|---|
 | [Helmet](https://helmetjs.github.io/) | Sets `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Strict-Transport-Security`, removes `X-Powered-By`, and more — always on, in both dev and prod. |
-| Content-Security-Policy | **Production only** (see below for why). Restricts scripts/styles/images/connections to `'self'` plus the specific third-party hosts this site actually uses (Google Tag Manager, Google Fonts, EmailJS). Blocks `object-src`, forces `base-uri 'self'` and `frame-ancestors 'self'` (clickjacking protection beyond `X-Frame-Options`). |
-| Per-request nonce | A random nonce is generated per response (`res.locals.cspNonce`) and stamped onto the one inline `<script>` in `index.html` (the gtag config block) via the `__CSP_NONCE__` placeholder, and into the CSP header's `script-src`. This lets that one inline script run without resorting to `script-src 'unsafe-inline'`, which would otherwise permit *any* injected inline script to execute. |
 | Rate limiting (general) | 300 requests/minute per IP across the whole app — a blunt ceiling against scripted abuse. Generous because one page view fans out into many asset requests. |
 | Rate limiting (render) | 60 requests/minute per IP specifically on the SSR catch-all, since `renderToString` is the one CPU-expensive operation per request — this is what actually protects against a render-flooding DoS. |
 | `trust proxy` | Set so `req.ip` (and therefore rate limiting) reflects the real client IP when deployed behind a reverse proxy/load balancer, instead of the proxy's own IP. |
 | No stack traces to clients | The catch-all's error handler used to do `res.status(500).end(e.stack)`, leaking file paths and dependency versions to anyone who could trigger a 500. It now logs the stack server-side only and sends a generic `Internal Server Error` in production (dev still shows the stack, since that's local-only and useful for debugging). |
 
-**Why CSP is dev-off, prod-on:** Vite's HMR client and React Fast Refresh
-inject inline/`eval`'d code that a strict CSP blocks outright, so enforcing
-it in `npm run dev` would break hot reload. Production ships a fixed,
-pre-built set of scripts, so the policy can be strict there without
-collateral damage.
+**No Content-Security-Policy, deliberately.** An earlier version of this
+setup shipped a strict CSP with a per-script nonce. It kept breaking the
+Google Ads conversion tag (`AW-...`): each conversion event calls a
+different `doubleclick.net` / `google.com` collection subdomain, and Google
+adds/rotates these without notice, so any CSP allowlist for ad/tracking
+traffic is unbounded, ongoing upkeep rather than a one-time fix. Per
+explicit decision, tracking tags (gtag, GTM, conversion pixels, remarketing)
+now run with no CSP or nonce restrictions at all — `contentSecurityPolicy`
+is `false` in the Helmet config in `server.js`. The other headers above
+(HSTS, frame-options, nosniff, rate limiting) are unaffected and still
+protect the app.
 
-**If you add a new third-party script/API** (another analytics tag, a new
-embed, a different form-submission API), the production CSP will block it
-until you add its host to the relevant directive in `server.js`
-(`scriptSrc`/`connectSrc`/`imgSrc`/etc.) — check the browser console for a
-`Refused to ... because it violates the following Content Security Policy
-directive` message, which names the exact directive to update.
+If you want CSP back in the future, scope it narrowly (e.g. only on routes
+that don't load ad tags, or `Content-Security-Policy-Report-Only` to observe
+without blocking) rather than trying to allowlist Google's ad-tech domains
+outright.
 
 **What this doesn't cover:** TLS termination, DDoS mitigation at the network
 layer, and request timeouts are better handled by a reverse proxy/CDN in
@@ -151,6 +153,5 @@ transport layer.
 | `dist/server/entry-server.js` not found when running `npm start` | Forgot to run `npm run build` first | Run `npm run build`, then `npm start` |
 | Port already in use on restart | A previous `node server.js` (or its Vite HMR websocket on port `24678`) is still running | `lsof -ti:5173,24678 \| xargs kill -9` |
 | Console spam: `No routes matched location "/some-file.jpg"` | A component references an asset by absolute path (e.g. `poster="/hero-bg.jpg"`) that doesn't exist in `public/`, so the request 404s and used to fall through to SSR, which tried to render it as a page. `server.js`'s catch-all now answers 404 immediately for any unmatched request whose path has a file extension, so this no longer happens — but it means the asset is still genuinely missing. | Add the missing file to `public/`, or fix the reference to point at a real asset. |
-| Browser console: `Refused to ... violates the following Content Security Policy directive` | A script/style/image/API call from a host not in the production CSP allowlist | Add that host to the relevant directive in `server.js` (see §8) |
 | `429 Too Many Requests` during normal use/testing | You (or a load test / bot) exceeded the rate limits in §8 | Wait for the 1-minute window to reset, or raise `limit` in `server.js` if the defaults are too tight for your traffic pattern |
 | Real client IPs show up as the load balancer's IP in logs, or rate limiting seems to apply globally instead of per-visitor | Running behind a reverse proxy that isn't the immediate first hop `trust proxy: 1` expects | Adjust the `trust proxy` value in `server.js` to match your proxy chain (see the [Express `trust proxy` docs](https://expressjs.com/en/guide/behind-proxies.html)) |

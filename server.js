@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import crypto from "node:crypto";
 import express from "express";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
@@ -21,54 +20,13 @@ const app = express();
 // proxy's. Harmless when running directly with no proxy in front.
 app.set("trust proxy", 1);
 
-// Every response gets a fresh nonce, allowed into the CSP below, and
-// stamped onto the one inline <script> in index.html (see entry-server
-// rendering further down) so that script keeps working under a strict CSP
-// without needing a blanket 'unsafe-inline'.
-app.use((req, res, next) => {
-  res.locals.cspNonce = crypto.randomBytes(16).toString("base64");
-  next();
-});
-
 app.use(
   helmet({
-    // Vite's dev client and React Fast Refresh inject inline/eval'd code
-    // that a strict CSP would block, so only enforce CSP in production,
-    // where the app ships a static, known set of scripts/styles.
-    contentSecurityPolicy: isProduction
-      ? {
-          directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: [
-              "'self'",
-              (req, res) => `'nonce-${res.locals.cspNonce}'`,
-              "https://www.googletagmanager.com",
-            ],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-            fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
-            imgSrc: ["'self'", "data:", "https:"],
-            mediaSrc: ["'self'"],
-            connectSrc: [
-              "'self'",
-              "https://www.googletagmanager.com",
-              "https://www.google-analytics.com",
-              "https://analytics.google.com",
-              "https://api.emailjs.com",
-              // Google Ads (gtag AW-... conversion tracking) beacons
-              "https://www.google.com",
-              "https://ad.doubleclick.net",
-              "https://googleads.g.doubleclick.net",
-            ],
-            objectSrc: ["'none'"],
-            baseUri: ["'self'"],
-            formAction: ["'self'"],
-            frameAncestors: ["'self'"],
-            upgradeInsecureRequests: [],
-          },
-        }
-      : false,
-    // Third-party resources here (Google Fonts, gtag, EmailJS) don't send
-    // CORP/COEP headers, so a strict embedder policy would block them.
+    // No Content-Security-Policy: ad/tracking tags (Google Ads conversion
+    // pixels, GTM, Analytics, remarketing) call an open-ended, frequently
+    // changing set of google.com/doubleclick.net subdomains, so allowlisting
+    // them in a CSP is unbounded upkeep. Other headers below still apply.
+    contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false,
   })
 );
@@ -143,9 +101,7 @@ app.use("*all", renderLimiter, async (req, res) => {
 
     const { html: appHtml } = render(url);
 
-    const html = template
-      .replace(`<!--ssr-outlet-->`, appHtml)
-      .replaceAll("__CSP_NONCE__", res.locals.cspNonce);
+    const html = template.replace(`<!--ssr-outlet-->`, appHtml);
 
     res.status(200).set({ "Content-Type": "text/html" }).send(html);
   } catch (e) {
